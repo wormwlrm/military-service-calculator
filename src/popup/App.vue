@@ -1,19 +1,22 @@
 <template>
-  <div>
-    <p>Hello world!2222333</p>
+  <div id="app">
+    <p>Hello world!</p>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-p {
-  font-size: 20px;
+#app {
+  width: 400px;
+  height: 300px;
 }
 </style>

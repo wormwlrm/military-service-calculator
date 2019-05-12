@@ -1,14 +1,14 @@
 {
-  "name": "my-extension",
-  "description": "A Vue.js web extension",
-  "version": null,
+  "name": "military-service-calculator",
+  "description": "Chrome extension application for calculating military service date",
+  "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
   "browser_action": {
-    "default_title": "my-extension",
+    "default_title": "Military Service Calculator",
     "default_popup": "popup/popup.html"
   },
   "background": {
