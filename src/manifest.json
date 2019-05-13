@@ -1,6 +1,6 @@
 {
-  "name": "military-service-calculator",
-  "description": "Chrome extension application for calculating military service date",
+  "name": "전역일 계산기",
+  "description": "심플한 디자인의 위젯형 전역일 계산기입니다.",
   "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
@@ -8,12 +8,11 @@
     "128": "icons/icon_128.png"
   },
   "browser_action": {
-    "default_title": "Military Service Calculator",
+    "default_title": "전역일 계산기",
     "default_popup": "popup/popup.html"
   },
+  "permissions": ["storage", "notifications"],
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   }
 }

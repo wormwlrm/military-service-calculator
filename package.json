@@ -15,7 +15,9 @@
     "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
   },
   "dependencies": {
+    "element-ui": "^2.8.2",
     "vue": "^2.6.10",
+    "vue-router": "^3.0.1",
     "webextension-polyfill": "^0.3.1"
   },
   "devDependencies": {
@@ -47,6 +49,7 @@
     "prettier": "^1.14.3",
     "pretty-quick": "^1.8.0",
     "sass-loader": "^7.1.0",
+    "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.6.10",
     "web-ext-types": "^2.1.0",
