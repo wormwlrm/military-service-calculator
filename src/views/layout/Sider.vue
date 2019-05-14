@@ -14,8 +14,8 @@
         <i class="el-icon-setting"></i>
         <span>설정</span>
       </el-menu-item>
-      <el-menu-item index="3">
-        <i class="el-icon-setting"></i>
+      <el-menu-item index="/about">
+        <i class="el-icon-bell"></i>
         <span>정보</span>
       </el-menu-item>
     </el-menu>

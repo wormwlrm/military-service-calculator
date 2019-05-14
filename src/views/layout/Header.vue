@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import image from '../../icons/icon_48.png';
-
 export default {
   methods: {
     noti() {

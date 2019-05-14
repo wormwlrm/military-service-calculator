@@ -1,6 +1,12 @@
 <template>
   <div id="dashboard">
-    <input v-model="data" type="text" />
+    <el-date-picker
+      v-model="data"
+      type="date"
+      placeholder="Pick a day"
+      size="mini"
+    >
+    </el-date-picker>
     <button @click="saveEndDate">Save</button>
     <br />
     {{ data }}
@@ -17,8 +23,8 @@ export default {
 
   created() {
     chrome.storage.sync.get(['key'], result => {
-      console.log('Value currently is ' + result.key);
-      this.data = result.key + '/';
+      console.log(`Value currently is ${result.key}`);
+      this.data = `${result.key}/`;
     });
   },
 
@@ -27,7 +33,7 @@ export default {
   methods: {
     saveEndDate() {
       chrome.storage.sync.set({ key: this.data }, () => {
-        console.log('Value is set to ' + this.data);
+        console.log(`Value is set to ${this.data}`);
       });
     }
   }

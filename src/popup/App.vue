@@ -9,9 +9,9 @@
           <Sider></Sider>
         </el-aside>
         <el-main>
-          <transition name="fade" mode="out-in" :duration="300">
+          <el-collapse-transition>
             <router-view></router-view>
-          </transition>
+          </el-collapse-transition>
         </el-main>
       </el-container>
     </el-container>
@@ -34,16 +34,5 @@ export default {
 #app {
   width: 500px;
   height: 300px;
-}
-</style>
-
-<style lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0;
 }
 </style>
