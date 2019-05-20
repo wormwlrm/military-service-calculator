@@ -4,37 +4,41 @@
       <el-form
         ref="form"
         :model="form"
-        label-width="120px"
-        label-position="top"
+        label-width="80px"
+        label-position="left"
+        size="small"
       >
-        <el-form-item label="Activity name">
-          <el-col :span="11">
-            <el-date-picker
-              v-model="form.startDate"
-              type="date"
-              placeholder="Pick a day"
-              clearable
-              @change="onStartDateChange"
-              format="yyyy/MM/dd"
-              value-format="yyyy-MM-dd"
-              :picker-options="startDateOption"
-            />
-          </el-col>
-          <el-col :span="11" :offset="2">
-            <el-date-picker
-              v-model="form.endDate"
-              type="date"
-              placeholder="Pick a day"
-              clearable
-              @change="onEndDateChange"
-              format="yyyy/MM/dd"
-              value-format="yyyy-MM-dd"
-              :picker-options="endDateOption"
-            />
-          </el-col>
+        <el-form-item label="Name">
+          <el-input v-model="form.username" size="small"></el-input>
+        </el-form-item>
+        <el-form-item label="Start Date">
+          <el-date-picker
+            v-model="form.startDate"
+            type="date"
+            size="small"
+            placeholder="Pick a day"
+            clearable
+            @change="onStartDateChange"
+            format="yyyy/MM/dd"
+            value-format="yyyy-MM-dd"
+            :picker-options="startDateOption"
+          />
+        </el-form-item>
+        <el-form-item label="End Date">
+          <el-date-picker
+            v-model="form.endDate"
+            type="date"
+            size="small"
+            placeholder="Pick a day"
+            clearable
+            @change="onEndDateChange"
+            format="yyyy/MM/dd"
+            value-format="yyyy-MM-dd"
+            :picker-options="endDateOption"
+          />
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="saveEndDate">
+      <el-button type="primary" size="small" @click="saveEndDate">
         Save
       </el-button>
     </el-row>
@@ -46,11 +50,7 @@ export default {
   data() {
     return {
       startDateOption: null,
-      endDateOption: {
-        disabledDate(time) {
-          return time.getTime() > Date.now();
-        }
-      },
+      endDateOption: null,
       form: {
         startDate: '',
         endDate: ''
@@ -77,16 +77,18 @@ export default {
   methods: {
     init(result) {
       this.form = {
+        username: '',
         startDate: '',
         endDate: ''
       };
+      this.form.username = result.username;
       this.form.startDate = result.startDate;
       this.form.endDate = result.endDate;
 
       this.startDateOption = {
         disabledDate: time => {
           if (this.form.endDate) {
-            return time.getTime() >= new Date(this.form.endDate).getTime();
+            return time.getTime() >= this.$dayjs(this.form.endDate).valueOf();
           }
           return false;
         }
@@ -95,7 +97,7 @@ export default {
       this.endDateOption = {
         disabledDate: time => {
           if (this.form.startDate) {
-            return time.getTime() <= new Date(this.form.startDate).getTime();
+            return time.getTime() <= this.$dayjs(this.form.startDate).valueOf();
           }
           return false;
         }
@@ -114,14 +116,13 @@ export default {
       chrome.storage.sync.set(
         {
           startDate: this.form.startDate,
-          endDate: this.form.endDate
+          endDate: this.form.endDate,
+          username: this.form.username
         },
         () => {
-          this.$notify({
-            title: 'Success',
-            message: 'This is a success message',
-            type: 'success',
-            duration: 1500
+          this.$message.success({
+            message: 'Congrats, this is a success message.',
+            type: 'success'
           });
           console.log(`Value is set to ${this.endDate}`);
         }
@@ -131,4 +132,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#option {
+  position: relative;
+}
+</style>

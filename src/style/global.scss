@@ -1,0 +1,30 @@
+$app-width: 500px;
+$app-height: 350px;
+
+$content-width: 350px;
+$content-height: 100%;
+
+$sider-width: 150px;
+$sider-height: 100%;
+
+$primary-text: #303133;
+$regular-text: #606266;
+$secondary-text: #909399;
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

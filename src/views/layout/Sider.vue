@@ -42,8 +42,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../style/global.scss';
+
 #sider {
-  width: 150px;
   position: relative;
+  width: $sider-width;
+  height: $sider-height;
+  background-color: white;
 }
 </style>
