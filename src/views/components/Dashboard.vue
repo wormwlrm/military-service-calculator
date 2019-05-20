@@ -1,15 +1,13 @@
 <template>
   <div id="dashboard">
-    <el-date-picker
-      v-model="data"
-      type="date"
-      placeholder="Pick a day"
-      size="mini"
-    >
-    </el-date-picker>
-    <button @click="saveEndDate">Save</button>
-    <br />
-    {{ data }}
+    <template v-if="startDate && endDate">
+      {{ startDate }} & {{ endDate }}
+
+      {{ remainPercentage }} %
+    </template>
+    <template v-else>
+      There is no end Date!
+    </template>
   </div>
 </template>
 
@@ -17,24 +15,45 @@
 export default {
   data() {
     return {
-      data: ''
+      startDate: '',
+      endDate: '',
+      date: new Date(),
+      timer: null
     };
   },
 
+  computed: {
+    remainPercentage() {
+      // return 5;
+      return ((this.doneTime / this.allTime) * 100).toFixed(10);
+    },
+
+    doneTime() {
+      return this.date.getTime() - new Date(this.startDate).getTime();
+    },
+
+    allTime() {
+      return (
+        new Date(this.endDate).getTime() - new Date(this.startDate).getTime()
+      );
+    }
+  },
+
   created() {
-    chrome.storage.sync.get(['key'], result => {
-      console.log(`Value currently is ${result.key}`);
-      this.data = `${result.key}/`;
+    chrome.storage.sync.get(null, result => {
+      if (result) {
+        console.log(result);
+        this.startDate = result.startDate;
+        this.endDate = result.endDate;
+
+        this.timer = setInterval(this.runTimer, 10);
+      }
     });
   },
 
-  mounted() {},
-
   methods: {
-    saveEndDate() {
-      chrome.storage.sync.set({ key: this.data }, () => {
-        console.log(`Value is set to ${this.data}`);
-      });
+    runTimer() {
+      this.date = new Date();
     }
   }
 };
