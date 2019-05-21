@@ -12,7 +12,6 @@ Vue.prototype.$browser = global.browser;
 Vue.prototype.$dayjs = dayjs;
 
 Vue.use(VueRouter);
-
 Vue.use(ElementUI);
 
 const router = new VueRouter({

@@ -6,7 +6,15 @@
       @open="handleOpen"
       @close="handleClose"
     >
-      <el-menu-item index="/">
+      <el-menu-item
+        v-for="route in routes"
+        :key="route.name"
+        :index="route.path"
+      >
+        <i :class="route.icon"></i>
+        <span>{{ route.name }}</span>
+      </el-menu-item>
+      <!-- <el-menu-item index="/">
         <i class="el-icon-odometer"></i>
         <span>전역일</span>
       </el-menu-item>
@@ -17,13 +25,21 @@
       <el-menu-item index="/about">
         <i class="el-icon-bell"></i>
         <span>정보</span>
-      </el-menu-item>
+      </el-menu-item> -->
     </el-menu>
   </div>
 </template>
 
 <script>
+import routes from '../../router/routes';
+
 export default {
+  data() {
+    return {
+      routes
+    };
+  },
+
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -45,7 +61,7 @@ export default {
 @import '../../style/global.scss';
 
 #sider {
-  position: relative;
+  position: fixed;
   width: $sider-width;
   height: $sider-height;
   background-color: white;

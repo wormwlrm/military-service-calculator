@@ -4,6 +4,8 @@
       <div class="duration">{{ startDate }} - {{ endDate }}</div>
       <div class="username">
         <span class="username-highlighter">{{ username }}</span> 님
+        <br />
+        <span>{{ serviceType }}</span>
       </div>
       <!-- {{ startDate }} & {{ endDate }}
       {{ doneTime }} / {{ allTime }} -->
@@ -42,14 +44,19 @@
 </template>
 
 <script>
+import mixin from '../../mixin/mixin';
+
 export default {
   data() {
     return {
       startDate: '',
       endDate: '',
       username: '',
+      serviceType: '',
+
       date: this.$dayjs(),
-      timer: null
+      timer: null,
+      loading: false
     };
   },
 
@@ -59,7 +66,7 @@ export default {
     },
 
     remainPercentage() {
-      return ((this.doneTime / this.allTime) * 100).toFixed(5);
+      return ((this.doneTime / this.allTime) * 100).toFixed(7);
     },
 
     doneTime() {
@@ -87,17 +94,8 @@ export default {
     }
   },
 
-  created() {
-    chrome.storage.sync.get(null, result => {
-      if (result) {
-        console.log(result);
-        this.startDate = result.startDate;
-        this.endDate = result.endDate;
-        this.username = result.username;
-
-        this.timer = setInterval(this.runTimer, 50);
-      }
-    });
+  mounted() {
+    this.timer = setInterval(this.runTimer, 50);
   },
 
   beforeDestroy() {
@@ -108,7 +106,9 @@ export default {
     runTimer() {
       this.date = this.$dayjs();
     }
-  }
+  },
+
+  mixins: [mixin]
 };
 </script>
 
@@ -137,7 +137,7 @@ export default {
     font-size: 15px;
 
     .remain-percentage-highlighter {
-      font-size: 50px;
+      font-size: 45px;
       font-weight: 900;
     }
 
