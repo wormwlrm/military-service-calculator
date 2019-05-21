@@ -12,7 +12,7 @@
     "build:dev": "cross-env NODE_ENV=development webpack --hide-modules",
     "build-zip": "node scripts/build-zip.js",
     "watch": "npm run build -- --watch",
-    "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
+    "dev": "cross-env HMR=true npm run build:dev -- --watch"
   },
   "dependencies": {
     "dayjs": "^1.8.14",
