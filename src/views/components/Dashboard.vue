@@ -10,9 +10,9 @@
       <!-- {{ startDate }} & {{ endDate }}
       {{ doneTime }} / {{ allTime }} -->
       <div class="remain-percentage">
-        <span class="remain-percentage-highlighter">{{
-          remainPercentage
-        }}</span>
+        <span class="remain-percentage-highlighter">
+          {{ remainPercentage }}
+        </span>
         <span class="remain-percentage-unit">%</span>
       </div>
       <div class="percentage-progress">
@@ -72,11 +72,18 @@ export default {
 
   watch: {
     remainPercentageNumber() {
-      if (typeof this.remainPercentageNumber === 'number') {
+      if (
+        typeof this.remainPercentageNumber === 'number' &&
+        !isNaN(this.remainPercentageNumber)
+      ) {
         chrome.browserAction.setBadgeText({
           text: `${this.remainPercentageNumber}%`
         });
       }
+    },
+
+    ready() {
+      this.timer = setInterval(this.runTimer, 50);
     }
   },
 
@@ -103,6 +110,10 @@ export default {
       );
     },
 
+    ready() {
+      return !!(this.startDate && this.endDate);
+    },
+
     wholeServiceDay() {
       return this.$dayjs(this.endDate).diff(this.$dayjs(this.startDate), 'day');
     },
@@ -121,18 +132,16 @@ export default {
     }
   },
 
-  mounted() {
-    this.timer = setInterval(this.runTimer, 50);
-  },
-
-  beforeDestroy() {
-    clearInterval(this.timer);
-  },
+  mounted() {},
 
   methods: {
     runTimer() {
       this.date = this.$dayjs();
     }
+  },
+
+  beforeDestroy() {
+    clearInterval(this.timer);
   },
 
   mixins: [mixin]
@@ -164,12 +173,12 @@ export default {
     font-size: 15px;
 
     .remain-percentage-highlighter {
-      font-size: 45px;
+      font-size: 42px;
       font-weight: 900;
     }
 
     .remain-percentage-unit {
-      font-weight: 600px;
+      font-weight: 600;
     }
   }
 

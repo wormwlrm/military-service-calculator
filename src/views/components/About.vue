@@ -1,6 +1,47 @@
 <template>
   <div id="about">
-    Hello This is Option
+    <div class="info">
+      <img class="logo" src="/icons/icon128.png" />
+      <h2 class="logo-title">전역일 계산기 v1.0.0</h2>
+    </div>
+    <div class="developer">
+      <p class="developer-title">지원 및 개발자 정보</p>
+      <div class="tab-info">
+        <div class="tab-item">
+          <a href="https://wormwlrm.github.io" target="_blank">
+            <el-button icon="el-icon-document-checked" circle></el-button>
+          </a>
+          <br />
+          <span class="item-title">공지사항</span>
+        </div>
+        <div class="tab-item">
+          <a href="https://wormwlrm.github.io" target="_blank">
+            <el-button icon="el-icon-s-flag" circle></el-button>
+          </a>
+          <br />
+          <span class="item-title">웹사이트</span>
+        </div>
+        <div class="tab-item">
+          <a href="mailto:wormwlrm@naver.com" target="_blank">
+            <el-button icon="el-icon-message" circle></el-button>
+          </a>
+          <br />
+          <span class="item-title">이메일</span>
+        </div>
+        <div class="tab-item">
+          <a
+            href="https://github.com/wormwlrm/military-service-calculator"
+            target="_blank"
+          >
+            <el-button circle>
+              <img class="github-logo" src="/icons/github.png" />
+            </el-button>
+          </a>
+          <br />
+          <span class="item-title">Github</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,4 +49,42 @@
 export default {};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  height: 230px;
+
+  .info {
+    .logo {
+      width: 96px;
+      height: 96px;
+    }
+
+    .logo-title {
+      margin-top: 0;
+    }
+  }
+
+  .developer {
+    .developer-title {
+    }
+
+    .tab-info {
+      display: flex;
+
+      .tab-item {
+        flex: 1;
+
+        .github-logo {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}
+</style>

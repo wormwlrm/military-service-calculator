@@ -2,6 +2,9 @@ const mixin = {
   created() {
     console.log('mixin init start');
     chrome.storage.sync.get(null, result => this.init(result));
+    this.$root.$on('updated', () => {
+      chrome.storage.sync.get(null, result => this.init(result));
+    });
   },
 
   methods: {
@@ -29,6 +32,7 @@ const mixin = {
       try {
         chrome.storage.sync.set(payload, () => {
           console.log('save success', payload);
+          this.$root.$emit('updated');
         });
       } catch (e) {
         console.error(e);

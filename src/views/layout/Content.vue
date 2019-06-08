@@ -10,10 +10,16 @@
 </template>
 
 <script>
+import mixin from '../../mixin/mixin';
+
 export default {
   data() {
     return {
-      loading: false
+      startDate: '',
+      endDate: '',
+
+      loading: false,
+      date: this.$dayjs()
     };
   },
 
@@ -30,7 +36,13 @@ export default {
     route() {
       return this.$route.name;
     }
-  }
+  },
+
+  methods: {},
+
+  mounted() {},
+
+  mixins: [mixin]
 };
 </script>
 
