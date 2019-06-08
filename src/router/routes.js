@@ -6,25 +6,25 @@ import Account from '../views/components/Account';
 export default [
   {
     icon: 'el-icon-odometer',
-    name: 'Dashboard',
+    name: '대시보드',
     path: '/',
     component: Dashboard
   },
   {
     icon: 'el-icon-user',
-    name: 'Account',
+    name: '계정',
     path: '/account',
     component: Account
   },
   {
     icon: 'el-icon-setting',
-    name: 'Option',
+    name: '옵션',
     path: '/option',
     component: Option
   },
   {
     icon: 'el-icon-bell',
-    name: 'About',
+    name: '정보',
     path: '/about',
     component: About
   }

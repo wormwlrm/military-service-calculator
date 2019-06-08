@@ -2,48 +2,69 @@
   <div id="option">
     <el-row>
       <el-form ref="form" label-width="80px" label-position="left" size="small">
-        <el-form-item label="Name">
-          <el-input v-model="username" size="small"></el-input>
+        <el-form-item label="이름">
+          <el-input
+            v-model="username"
+            size="small"
+            placeholder="이름을 입력하세요"
+          ></el-input>
         </el-form-item>
-        <el-form-item label="Type">
-          <el-select v-model="serviceType" placeholder="Select">
-            <el-option
-              v-for="item in cities"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+        <el-form-item label="복무">
+          <el-select
+            v-model="serviceType"
+            placeholder="복무형태를 선택하세요"
+            @change="resetServiceDate"
+          >
+            <el-option-group
+              v-for="group in serviceTypes"
+              :key="group.label"
+              :label="group.label"
             >
-              <span style="float: left">{{ item.label }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px">{{
-                item.value
-              }}</span>
-            </el-option>
+              <el-option
+                v-for="item in group.options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+                <span style="float: left">
+                  {{ item.label }}
+                </span>
+                <span
+                  v-if="item.length"
+                  style="float: right; color: #8492a6; font-size: 13px; margin-left: 10px;"
+                >
+                  {{ item.length }}개월
+                </span>
+              </el-option>
+            </el-option-group>
           </el-select>
         </el-form-item>
-        <el-form-item label="Start Date">
+        <el-form-item label="입영일">
           <el-date-picker
             v-model="startDate"
             type="date"
             size="small"
-            placeholder="Pick a day"
             clearable
+            placeholder="날짜를 선택하세요"
             @change="onStartDateChange"
             format="yyyy/MM/dd"
             value-format="yyyy-MM-dd"
             :picker-options="startDateOption"
+            :disabled="!serviceType"
           />
         </el-form-item>
-        <el-form-item label="End Date">
+        <el-form-item label="전역일">
           <el-date-picker
             v-model="endDate"
             type="date"
             size="small"
-            placeholder="Pick a day"
+            placeholder="날짜를 선택하세요"
             clearable
             @change="onEndDateChange"
             format="yyyy/MM/dd"
             value-format="yyyy-MM-dd"
             :picker-options="endDateOption"
+            :disabled="!serviceType"
           />
         </el-form-item>
       </el-form>
@@ -54,15 +75,16 @@
       >
         <span v-if="saved">
           <i class="el-icon-check"></i>
-          Saved
+          저장됨
         </span>
-        <span v-else>Save</span>
+        <span v-else>저장</span>
       </el-button>
     </el-row>
   </div>
 </template>
 
 <script>
+import { SERVICE_TYPES, getEndDate } from '../../utils';
 import mixin from '../../mixin/mixin';
 
 export default {
@@ -76,56 +98,7 @@ export default {
       startDateOption: null,
       endDateOption: null,
       saved: false,
-      cities: [
-        {
-          value: '육군',
-          label: '육군'
-        },
-        {
-          value: '해군',
-          label: '해군'
-        },
-        {
-          value: '공군',
-          label: '공군'
-        },
-        {
-          value: '해병',
-          label: '해병'
-        },
-        {
-          value: '의경',
-          label: '의경'
-        },
-        {
-          value: '헌병',
-          label: '헌병'
-        },
-        {
-          value: '사회복무요원',
-          label: '사회복무요원'
-        },
-        {
-          value: '의방',
-          label: '의방'
-        },
-        {
-          value: '산업기능요원(현역)',
-          label: '산업기능요원(현역)'
-        },
-        {
-          value: '산업기능요원(보충역)',
-          label: '산업기능요원(보충역)'
-        },
-        {
-          value: '특전병',
-          label: '특전병'
-        },
-        {
-          value: '카투사',
-          label: '카투사'
-        }
-      ]
+      serviceTypes: SERVICE_TYPES
     };
   },
 
@@ -135,14 +108,14 @@ export default {
 
   methods: {
     setDateOption() {
-      this.startDateOption = {
-        disabledDate: time => {
-          if (this.endDate) {
-            return time.getTime() >= this.$dayjs(this.endDate).valueOf();
-          }
-          return false;
-        }
-      };
+      // this.startDateOption = {
+      //   disabledDate: time => {
+      //     if (this.endDate) {
+      //       return time.getTime() >= this.$dayjs(this.endDate).valueOf();
+      //     }
+      //     return false;
+      //   }
+      // };
 
       this.endDateOption = {
         disabledDate: time => {
@@ -156,10 +129,17 @@ export default {
 
     onStartDateChange(date) {
       console.log(`Value Changed to ${date}`);
+
+      this.endDate = getEndDate(date, this.serviceType);
     },
 
     onEndDateChange(date) {
       console.log(`Value Changed to ${date}`);
+    },
+
+    resetServiceDate() {
+      this.startDate = null;
+      this.endDate = null;
     },
 
     saveData() {

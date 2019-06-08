@@ -2,21 +2,27 @@
   <div id="option">
     <el-row>
       <el-form ref="form" label-width="80px" label-position="left" size="small">
-        <el-form-item label="Theme">
+        <el-form-item label="테마">
           <el-switch
             v-model="theme"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-text="White"
-            inactive-text="Dark"
-            active-value="white"
-            inactive-value="dark"
+            active-color="#303133"
+            inactive-color="#DCDFE6"
+            active-text="어둡게"
+            inactive-text="밝게"
+            active-value="dark"
+            inactive-value="white"
+            @change="onThemeChanged"
           >
           </el-switch>
         </el-form-item>
-        <el-form-item label="Reset">
+        <el-form-item label="초기화">
           <el-button size="small" @click="reset">
-            Reset
+            초기화
+          </el-button>
+        </el-form-item>
+        <el-form-item label="Dev">
+          <el-button size="small" @click="DevSet">
+            Dev
           </el-button>
         </el-form-item>
       </el-form>
@@ -39,13 +45,17 @@ export default {
   },
 
   methods: {
+    onThemeChanged(value) {
+      this.theme = value;
+      this.saveData();
+    },
+
     saveData() {
-      const { endDate, startDate, username, serviceType } = this;
+      const { theme, startDate, endDate } = this;
       const payload = {
+        theme,
         startDate,
-        endDate,
-        username,
-        serviceType
+        endDate
       };
       this.save(payload);
       this.saved = true;
@@ -59,6 +69,14 @@ export default {
       this.endDate = '';
       this.username = '';
       this.serviceType = '';
+      this.saveData();
+    },
+
+    DevSet() {
+      this.startDate = this.$dayjs().valueOf();
+      this.endDate = this.$dayjs(this.startDate)
+        .add(1, 'minute')
+        .valueOf();
       this.saveData();
     }
   },

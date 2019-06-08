@@ -4,14 +4,15 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
-    "48": "icons/icon_48.png",
-    "128": "icons/icon_128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "browser_action": {
     "default_title": "전역일 계산기",
     "default_popup": "popup/popup.html"
   },
-  "permissions": ["storage", "notifications"],
+  "permissions": ["storage"],
   "background": {
     "scripts": ["background.js"]
   }

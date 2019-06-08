@@ -1,11 +1,11 @@
 <template>
   <div id="dashboard" shadow="never">
     <template v-if="startDate && endDate">
-      <div class="duration">{{ startDate }} - {{ endDate }}</div>
+      <div class="duration">{{ startDate }} ~ {{ endDate }}</div>
       <div class="username">
-        <span class="username-highlighter">{{ username }}</span> 님
+        <span class="username-highlighter">{{ username || '굳건이' }}</span> 님
         <br />
-        <span>{{ serviceType }}</span>
+        <span>{{ getServiceName }}</span>
       </div>
       <!-- {{ startDate }} & {{ endDate }}
       {{ doneTime }} / {{ allTime }} -->
@@ -38,12 +38,22 @@
       </div>
     </template>
     <template v-else>
-      There is no end Date!
+      <div class="no-info">
+        <i class="el-icon-bell alert-icon"></i>
+        <h2>전역일을 등록해주세요!</h2>
+        <p>계정 메뉴에서 본인의 정보를 입력해주세요.</p>
+        <router-link to="/account">
+          <el-button>
+            바로가기
+          </el-button>
+        </router-link>
+      </div>
     </template>
   </div>
 </template>
 
 <script>
+import { getServiceLabelByValue } from '../../utils';
 import mixin from '../../mixin/mixin';
 
 export default {
@@ -60,13 +70,26 @@ export default {
     };
   },
 
+  watch: {
+    remainPercentageNumber() {
+      if (typeof this.remainPercentageNumber === 'number') {
+        chrome.browserAction.setBadgeText({
+          text: `${this.remainPercentageNumber}%`
+        });
+      }
+    }
+  },
+
   computed: {
     remainPercentageNumber() {
       return Math.floor(Number(this.remainPercentage));
     },
 
     remainPercentage() {
-      return ((this.doneTime / this.allTime) * 100).toFixed(7);
+      const percentage = ((this.doneTime / this.allTime) * 100).toFixed(7);
+      if (percentage > 100) return 100;
+      else if (percentage <= 0) return 0;
+      else return percentage;
     },
 
     doneTime() {
@@ -91,6 +114,10 @@ export default {
     remainServiceDay() {
       return this.wholeServiceDay - this.currentServiceDay;
       // return this.$dayjs(this.endDate).diff(this.$dayjs(), 'day');
+    },
+
+    getServiceName() {
+      return getServiceLabelByValue(this.serviceType);
     }
   },
 
@@ -166,6 +193,19 @@ export default {
       &:last-child {
         margin-right: 5px;
       }
+    }
+  }
+
+  .no-info {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    flex-direction: column;
+    text-align: center;
+    height: 230px;
+
+    .alert-icon {
+      font-size: 30px;
     }
   }
 }

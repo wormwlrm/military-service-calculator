@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="theme === 'dark' ? 'dark' : ''">
     <!-- <el-header height="40px">
         <Header></Header>
       </el-header> -->
@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import { LAYOUT } from '../utils';
 // import Header from '../views/layout/Header';
 import Sider from '../views/layout/Sider';
 import Content from '../views/layout/Content';
+import mixin from '../mixin/mixin';
 
 export default {
   components: {
@@ -29,9 +29,11 @@ export default {
 
   data() {
     return {
-      LAYOUT
+      theme: ''
     };
-  }
+  },
+
+  mixins: [mixin]
 };
 </script>
 

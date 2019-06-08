@@ -8,7 +8,7 @@
 git clone https://github.com/wormwlrm/military-service-calculator.git
 cd military-service-calculator
 npm install
-npm run watch:dev
+npm run dev
 ```
 
 2. go to `chrome://extensions`.
