@@ -1,4 +1,5 @@
 {
+  "author": "wormwlrm",
   "name": "전역일 계산기",
   "description": "심플한 디자인의 위젯형 전역일 계산기입니다.",
   "version": "1.0.0",
@@ -13,6 +14,7 @@
     "default_popup": "popup/popup.html"
   },
   "permissions": ["storage"],
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "background": {
     "scripts": ["background.js"]
   }

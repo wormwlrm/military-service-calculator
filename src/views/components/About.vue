@@ -8,7 +8,10 @@
       <p class="developer-title">지원 및 개발자 정보</p>
       <div class="tab-info">
         <div class="tab-item">
-          <a href="https://wormwlrm.github.io" target="_blank">
+          <a
+            href="https://wormwlrm.github.io/2019/06/15/Military-Service-Calculator-release-note.html"
+            target="_blank"
+          >
             <el-button icon="el-icon-document-checked" circle></el-button>
           </a>
           <br />

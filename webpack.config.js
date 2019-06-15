@@ -11,7 +11,8 @@ const config = {
   context: `${__dirname}/src`,
   entry: {
     background: './background.js',
-    'popup/popup': './popup/popup.js'
+    'popup/popup': './popup/popup.js',
+    'popup/analytics': './popup/analytics.js'
   },
   output: {
     path: `${__dirname}/dist`,

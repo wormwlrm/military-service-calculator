@@ -17,6 +17,7 @@
   "dependencies": {
     "dayjs": "^1.8.14",
     "element-ui": "^2.8.2",
+    "readme-md-generator": "^0.3.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.1",
     "webextension-polyfill": "^0.3.1"
