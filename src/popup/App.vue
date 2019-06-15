@@ -48,6 +48,18 @@ export default {
   overflow: auto;
   background-image: linear-gradient(90deg, #f2f6fc, #e4e7ed);
 
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ebeef5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c0c4cc;
+  }
+
   .full-height {
     height: 100%;
 

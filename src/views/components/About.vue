@@ -3,9 +3,10 @@
     <div class="info">
       <img class="logo" src="/icons/icon128.png" />
       <h2 class="logo-title">전역일 계산기 v1.0.0</h2>
+      <p class="logo-description">* 본 정보는 행정효력이 없습니다.</p>
     </div>
     <div class="developer">
-      <p class="developer-title">지원 및 개발자 정보</p>
+      <h3 class="developer-title">지원 및 개발자 정보</h3>
       <div class="tab-info">
         <div class="tab-item">
           <a
@@ -59,7 +60,6 @@ export default {};
   justify-content: center;
   vertical-align: middle;
   text-align: center;
-  height: 230px;
 
   .info {
     .logo {
@@ -68,12 +68,17 @@ export default {};
     }
 
     .logo-title {
-      margin-top: 0;
+      margin: 0;
+    }
+
+    .logo-description {
+      margin: 0;
     }
   }
 
   .developer {
     .developer-title {
+      margin-bottom: 5px;
     }
 
     .tab-info {

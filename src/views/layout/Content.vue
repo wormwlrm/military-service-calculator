@@ -50,5 +50,6 @@ export default {
 .content-card {
   min-height: 270px;
   overflow: auto;
+  margin-bottom: 30px;
 }
 </style>
