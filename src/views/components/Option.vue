@@ -4,29 +4,69 @@
       <el-form ref="form" label-width="80px" label-position="left" size="small">
         <!-- <el-form-item label="테마">
           <el-switch
-            v-model="theme"
+            v-model="themeType"
             active-color="#303133"
             inactive-color="#DCDFE6"
             active-text="어둡게"
             inactive-text="밝게"
             active-value="dark"
             inactive-value="white"
-            @change="onThemeChanged"
+            @change="onThemeTypeChanged"
           >
           </el-switch>
         </el-form-item> -->
-        <el-form-item label="초기화">
-          <el-popover
-            trigger="hover"
-            content="현재 저장된 계정 정보가 초기화됩니다."
-            placement="bottom"
+
+        <el-form-item label="뱃지">
+          <span slot="label">
+            뱃지
+            <el-popover
+              trigger="hover"
+              content="우측 상단에 표기되는 데이터 타입을 설정합니다."
+              placement="bottom"
+            >
+              <i slot="reference" class="el-icon-question"></i>
+            </el-popover>
+          </span>
+          <el-select
+            v-model="badgeType"
+            placeholder="뱃지 타입을 선택하세요."
+            @change="onBadgeTypeChanged"
           >
-            <i slot="reference" class="el-icon-question"></i>
-          </el-popover>
-          <el-button size="small" @click="reset">
+            <el-option
+              v-for="item in BADGE_TYPE"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+              {{ item.label }}
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="초기화">
+          <span slot="label">
             초기화
+            <el-popover
+              trigger="hover"
+              content="현재 저장된 계정, 옵션 정보가 초기화됩니다."
+              placement="bottom"
+            >
+              <i slot="reference" class="el-icon-question"></i>
+            </el-popover>
+          </span>
+          <el-button
+            :type="reset ? 'success' : 'primary'"
+            size="small"
+            @click="resetData"
+          >
+            <span v-if="reset">
+              <i class="el-icon-check"></i>
+              저장됨
+            </span>
+            <span v-else>초기화</span>
           </el-button>
         </el-form-item>
+
         <!-- <el-form-item label="Dev">
           <el-button size="small" @click="DevSet">
             Dev
@@ -41,32 +81,52 @@
 </template>
 
 <script>
+import { BADGE_TYPE } from '../../utils';
 import mixin from '../../mixin/mixin';
 
 export default {
   data() {
     return {
-      username: '',
-      startDate: '',
-      endDate: '',
-      serviceType: '',
-      theme: ''
+      username: null,
+      startDate: null,
+      endDate: null,
+      serviceType: null,
+      themeType: null,
+      badgeType: 'percent',
+
+      BADGE_TYPE,
+      reset: false
     };
   },
 
   methods: {
-    onThemeChanged(value) {
-      this.theme = value;
+    initComponent() {
+      this.username = this.$store.getters.getUsername;
+      this.startDate = this.$store.getters.getStartDate;
+      this.endDate = this.$store.getters.getEndTime;
+      this.serviceType = this.$store.getters.getServiceType;
+      this.themeType = this.$store.getters.getThemeType;
+      this.badgeType = this.$store.getters.getBadgeType;
+    },
+
+    onThemeTypeChanged(value) {
+      this.themeType = value;
+      this.saveData();
+    },
+
+    onBadgeTypeChanged(value) {
+      this.badgeType = value;
       this.saveData();
     },
 
     saveData() {
-      const { theme, startDate, endDate, serviceType } = this;
       const payload = {
-        theme,
-        startDate,
-        endDate,
-        serviceType
+        themeType: this.themeType,
+        badgeType: this.badgeType,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        serviceType: this.serviceType,
+        username: this.username
       };
       this.save(payload);
       this.saved = true;
@@ -75,11 +135,19 @@ export default {
       }, 3000);
     },
 
-    reset() {
-      this.startDate = '';
-      this.endDate = '';
-      this.username = '';
-      this.serviceType = '';
+    resetData() {
+      this.username = null;
+      this.startDate = null;
+      this.endDate = null;
+      this.serviceType = null;
+      this.themeType = null;
+      this.badgeType = 'percent';
+
+      this.reset = true;
+      setTimeout(() => {
+        this.reset = false;
+      }, 3000);
+
       this.saveData();
     },
 

@@ -1,9 +1,10 @@
 <template>
   <div id="dashboard" shadow="never">
-    <template v-if="startDate && endDate">
-      <div class="duration">{{ startDate }} ~ {{ endDate }}</div>
+    <template v-if="getStartDate && getEndDate">
+      <div class="duration">{{ getStartDate }} ~ {{ getEndDate }}</div>
       <div class="username">
-        <span class="username-highlighter">{{ username || '굳건이' }}</span> 님
+        <span class="username-highlighter">{{ getUsername || '굳건이' }}</span>
+        님
         <br />
         <span>{{ getServiceName }}</span>
       </div>
@@ -55,15 +56,11 @@
 <script>
 import { getServiceLabelByValue } from '../../utils';
 import mixin from '../../mixin/mixin';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
-      startDate: '',
-      endDate: '',
-      username: '',
-      serviceType: '',
-
       date: this.$dayjs(),
       timer: null,
       loading: false
@@ -76,18 +73,35 @@ export default {
         typeof this.remainPercentageNumber === 'number' &&
         !isNaN(this.remainPercentageNumber)
       ) {
-        chrome.browserAction.setBadgeText({
-          text: `${this.remainPercentageNumber}%`
-        });
+        switch (this.getBadgeType) {
+          // 56%
+          case 'date': {
+            chrome.browserAction.setBadgeText({
+              text: `${this.remainServiceDay}`
+            });
+            break;
+          }
+          // 556
+          default: {
+            chrome.browserAction.setBadgeText({
+              text: `${this.remainPercentageNumber}%`
+            });
+            break;
+          }
+        }
       }
-    },
-
-    ready() {
-      this.timer = setInterval(this.runTimer, 50);
     }
   },
 
   computed: {
+    ...mapGetters([
+      'getStartDate',
+      'getEndDate',
+      'getUsername',
+      'getServiceType',
+      'getBadgeType'
+    ]),
+
     remainPercentageNumber() {
       return Math.floor(Number(this.remainPercentage));
     },
@@ -100,48 +114,58 @@ export default {
     },
 
     doneTime() {
-      return this.date.valueOf() - this.$dayjs(this.startDate).valueOf();
+      return this.date.valueOf() - this.$dayjs(this.getStartDate).valueOf();
     },
 
     allTime() {
       return (
-        this.$dayjs(this.endDate).valueOf() -
-        this.$dayjs(this.startDate).valueOf()
+        this.$dayjs(this.getEndDate).valueOf() -
+        this.$dayjs(this.getStartDate).valueOf()
       );
     },
 
     ready() {
-      return !!(this.startDate && this.endDate);
+      return !!(this.getStartDate && this.getEndDate);
     },
 
     wholeServiceDay() {
-      return this.$dayjs(this.endDate).diff(this.$dayjs(this.startDate), 'day');
+      return this.$dayjs(this.getEndDate).diff(
+        this.$dayjs(this.getStartDate),
+        'day'
+      );
     },
 
     currentServiceDay() {
-      return this.$dayjs().diff(this.$dayjs(this.startDate), 'day');
+      return this.$dayjs().diff(this.$dayjs(this.getStartDate), 'day');
     },
 
     remainServiceDay() {
-      return this.wholeServiceDay - this.currentServiceDay;
-      // return this.$dayjs(this.endDate).diff(this.$dayjs(), 'day');
+      const remainDate = this.wholeServiceDay - this.currentServiceDay;
+      if (remainDate < 0) return 0;
+      else return remainDate;
     },
 
     getServiceName() {
-      return getServiceLabelByValue(this.serviceType);
-    }
-  },
-
-  mounted() {},
-
-  methods: {
-    runTimer() {
-      this.date = this.$dayjs();
+      return getServiceLabelByValue(this.getServiceType);
     }
   },
 
   beforeDestroy() {
     clearInterval(this.timer);
+  },
+
+  mounted() {},
+
+  methods: {
+    initComponent() {
+      if (this.ready) {
+        this.timer = setInterval(this.runTimer, 50);
+      }
+    },
+
+    runTimer() {
+      this.date = this.$dayjs();
+    }
   },
 
   mixins: [mixin]

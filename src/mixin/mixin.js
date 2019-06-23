@@ -1,37 +1,19 @@
 const mixin = {
   created() {
-    console.log('mixin init start');
-    chrome.storage.sync.get(null, result => this.init(result));
-    this.$root.$on('updated', () => {
-      chrome.storage.sync.get(null, result => this.init(result));
+    this.initComponent();
+    this.$root.$on('loaded', () => {
+      this.initComponent();
     });
   },
 
-  methods: {
-    init(result) {
-      try {
-        if (result) {
-          Object.keys(result).forEach(key => {
-            if (typeof this[key] !== 'undefined') {
-              console.log(key, result[key]);
-              this[key] = result[key];
-            }
-          });
-          // this.loading = false;
-        } else {
-          throw new Error('Fail to load data');
-        }
-      } catch (e) {
-        console.error(e);
-      } finally {
-        console.log('init finished');
-      }
-    },
+  beforeDestroy() {
+    this.$root.$off('loaded');
+  },
 
+  methods: {
     save(payload = {}) {
       try {
         chrome.storage.sync.set(payload, () => {
-          console.log('save success', payload);
           this.$root.$emit('updated');
         });
       } catch (e) {

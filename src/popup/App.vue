@@ -1,9 +1,9 @@
 <template>
-  <div id="app" :class="theme === 'dark' ? 'dark' : ''">
+  <div id="app" :class="themeType === 'dark' ? 'dark' : ''">
     <!-- <el-header height="40px">
         <Header></Header>
       </el-header> -->
-    <el-container>
+    <el-container v-loading="loading">
       <el-aside>
         <Sider></Sider>
       </el-aside>
@@ -29,11 +29,44 @@ export default {
 
   data() {
     return {
-      theme: ''
+      loading: false,
+      themeType: this.$store.state.themeType
     };
   },
 
-  mixins: [mixin]
+  created() {
+    chrome.storage.sync.get(null, result => this.init(result));
+    this.$root.$on('updated', () => {
+      chrome.storage.sync.get(null, result => this.init(result));
+    });
+  },
+
+  beforeDestroy() {
+    this.$root.$off('updated');
+  },
+
+  methods: {
+    init(result) {
+      try {
+        this.loading = true;
+        if (result) {
+          Object.keys(result).forEach(key => {
+            if (typeof this.$store.state[key] !== 'undefined') {
+              this.$store.state[key] = result[key];
+            }
+          });
+        } else {
+          throw new Error('Fail to load data');
+        }
+        this.$root.$emit('loaded');
+        this.loading = false;
+      } catch (e) {
+        console.error(e);
+      } finally {
+        console.log('store finished: ', this.$store.state);
+      }
+    }
+  }
 };
 </script>
 

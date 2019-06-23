@@ -10,18 +10,42 @@ const timer = setInterval(
     chrome.storage.sync.get(null, result => {
       console.log(result);
       if (result.startDate && result.endDate) {
-        const allTime =
-          dayjs(result.endDate).valueOf() - dayjs(result.startDate).valueOf();
-        const doneTime = dayjs().valueOf() - dayjs(result.startDate).valueOf();
-        let remainPercentage = ((doneTime / allTime) * 100).toFixed(7);
-        if (remainPercentage > 100) remainPercentage = 100;
-        if (remainPercentage <= 0) remainPercentage = 0;
-        // alert(result.endDate);
-        const remainPercentageNumber = Math.floor(Number(remainPercentage));
+        switch (result.badgeType) {
+          case 'date': {
+            const wholeServiceDay = dayjs(result.endDate).diff(
+              dayjs(result.startDate),
+              'day'
+            );
+            const currentServiceDay = dayjs().diff(
+              dayjs(result.startDate),
+              'day'
+            );
+            let remainDate = wholeServiceDay - currentServiceDay;
+            if (remainDate < 0) remainDate = 0;
+            chrome.browserAction.setBadgeText({
+              text: `${remainDate}`
+            });
+            break;
+          }
 
-        chrome.browserAction.setBadgeText({
-          text: `${remainPercentageNumber}%`
-        });
+          default: {
+            const allTime =
+              dayjs(result.endDate).valueOf() -
+              dayjs(result.startDate).valueOf();
+            const doneTime =
+              dayjs().valueOf() - dayjs(result.startDate).valueOf();
+            let remainPercentage = ((doneTime / allTime) * 100).toFixed(7);
+            if (remainPercentage > 100) remainPercentage = 100;
+            if (remainPercentage <= 0) remainPercentage = 0;
+            // alert(result.endDate);
+            const remainPercentageNumber = Math.floor(Number(remainPercentage));
+
+            chrome.browserAction.setBadgeText({
+              text: `${remainPercentageNumber}%`
+            });
+            break;
+          }
+        }
       } else {
         chrome.browserAction.setBadgeText({
           text: ''

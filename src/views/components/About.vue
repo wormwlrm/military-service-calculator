@@ -2,7 +2,7 @@
   <div id="about">
     <div class="info">
       <img class="logo" src="/icons/icon128.png" />
-      <h2 class="logo-title">전역일 계산기 v1.0.0</h2>
+      <h2 class="logo-title">전역일 계산기 v{{ manifest.version }}</h2>
       <p class="logo-description">* 본 정보는 행정효력이 없습니다.</p>
     </div>
     <div class="developer">
@@ -50,7 +50,15 @@
 </template>
 
 <script>
-export default {};
+import manifest from '../../manifest.json';
+
+export default {
+  data() {
+    return {
+      manifest
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>

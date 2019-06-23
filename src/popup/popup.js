@@ -4,6 +4,7 @@ import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/ko';
 import 'element-ui/lib/theme-chalk/index.css';
 import dayjs from 'dayjs';
+import { store } from '../store/store';
 import App from './App';
 import routes from '../router/routes';
 
@@ -23,6 +24,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   dayjs,
   render: h => h(App)
 });

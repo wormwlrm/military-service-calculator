@@ -200,3 +200,14 @@ export const SERVICE_TYPES = [
     options: SERVICES.filter(service => service.type === 'reserve')
   }
 ];
+
+export const BADGE_TYPE = [
+  {
+    value: 'percent',
+    label: '퍼센트'
+  },
+  {
+    value: 'date',
+    label: '디데이'
+  }
+];

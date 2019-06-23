@@ -86,14 +86,15 @@
 <script>
 import { SERVICE_TYPES, getEndDate } from '../../utils';
 import mixin from '../../mixin/mixin';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
-      username: '',
-      startDate: '',
-      endDate: '',
-      serviceType: '',
+      username: null,
+      startDate: null,
+      endDate: null,
+      serviceType: null,
 
       startDateOption: null,
       endDateOption: null,
@@ -102,11 +103,17 @@ export default {
     };
   },
 
-  mounted() {
-    this.setDateOption();
-  },
+  computed: {},
 
   methods: {
+    initComponent() {
+      this.setDateOption();
+      this.username = this.$store.getters.getUsername;
+      this.startDate = this.$store.getters.getStartDate;
+      this.endDate = this.$store.getters.getEndDate;
+      this.serviceType = this.$store.getters.getServiceType;
+    },
+
     setDateOption() {
       // this.startDateOption = {
       //   disabledDate: time => {
@@ -130,7 +137,11 @@ export default {
     onStartDateChange(date) {
       console.log(`Value Changed to ${date}`);
 
-      this.endDate = getEndDate(date, this.serviceType);
+      if (date) {
+        this.endDate = getEndDate(date, this.serviceType);
+      } else {
+        this.resetServiceDate();
+      }
     },
 
     onEndDateChange(date) {
@@ -143,26 +154,18 @@ export default {
     },
 
     saveData() {
-      const { endDate, startDate, username, serviceType } = this;
       const payload = {
-        startDate,
-        endDate,
-        username,
-        serviceType
+        startDate: this.startDate,
+        endDate: this.endDate,
+        username: this.username,
+        serviceType: this.serviceType
       };
       this.save(payload);
+
       this.saved = true;
       setTimeout(() => {
         this.saved = false;
       }, 3000);
-    },
-
-    reset() {
-      this.startDate = '';
-      this.endDate = '';
-      this.username = '';
-      this.serviceType = '';
-      this.saveData();
     }
   },
 
