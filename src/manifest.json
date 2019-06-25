@@ -14,7 +14,7 @@
     "default_popup": "popup/popup.html"
   },
   "permissions": ["storage"],
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; object-src 'self'",
   "background": {
     "scripts": ["background.js"]
   }
