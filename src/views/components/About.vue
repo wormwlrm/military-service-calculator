@@ -71,8 +71,8 @@ export default {
 
   .info {
     .logo {
-      width: 96px;
-      height: 96px;
+      width: 72px;
+      height: 72px;
     }
 
     .logo-title {
