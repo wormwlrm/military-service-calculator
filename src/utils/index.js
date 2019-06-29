@@ -151,12 +151,6 @@ export const SERVICES = [
   },
   {
     type: 'active',
-    length: 34,
-    value: 'industrialActive',
-    label: '산업기능요원(현역)'
-  },
-  {
-    type: 'active',
     length: 18,
     value: 'katusa',
     label: '카투사'
@@ -172,6 +166,12 @@ export const SERVICES = [
     length: 23,
     value: 'industrialReserve',
     label: '산업기능요원(보충역)'
+  },
+  {
+    type: 'reserve',
+    length: 34,
+    value: 'industrialActive',
+    label: '산업기능요원(현역)'
   },
   {
     type: 'reserve',
