@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ChromeExtensionReloader = require('webpack-chrome-extension-reloader');
 const { VueLoaderPlugin } = require('vue-loader');
-const { version } = require('./package.json');
+const { version } = require('./src/manifest.json');
 
 const config = {
   mode: process.env.NODE_ENV,
