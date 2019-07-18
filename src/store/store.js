@@ -10,7 +10,9 @@ export const store = new Vuex.Store({
     username: null,
     serviceType: null,
     themeType: null,
-    badgeType: 'percent'
+    badgeType: 'percent',
+    checkedReleasesIds: [],
+    fetchedReleases: []
   },
 
   mutations: {},
@@ -38,6 +40,14 @@ export const store = new Vuex.Store({
 
     getBadgeType(state) {
       return state.badgeType;
+    },
+
+    getCheckedReleasesIds(state) {
+      return state.checkedReleasesIds;
+    },
+
+    getFetchedReleases(state) {
+      return state.fetchedReleases;
     }
   }
 });

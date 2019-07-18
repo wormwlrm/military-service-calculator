@@ -14,16 +14,13 @@
             @change="onThemeTypeChanged"
           >
           </el-switch>
-        </el-form-item> -->
+        </el-form-item>-->
 
         <el-form-item label="뱃지">
           <span slot="label">
             뱃지
             <el-popover trigger="hover" placement="bottom">
-              <span slot>
-                우측 상단에 표기되는 데이터 타입을 설정합니다.<br />적용까지
-                최대 5초가 걸릴 수 있습니다.
-              </span>
+              <span slot>우측 상단에 표기되는 데이터 타입을 설정합니다.</span>
               <i slot="reference" class="el-icon-question"></i>
             </el-popover>
           </span>
@@ -33,9 +30,8 @@
               :key="item.value"
               :label="item.label"
               :value="item.value"
+              >{{ item.label }}</el-option
             >
-              {{ item.label }}
-            </el-option>
           </el-select>
         </el-form-item>
 
@@ -43,9 +39,7 @@
           <span slot="label">
             초기화
             <el-popover trigger="hover" placement="bottom">
-              <span slot>
-                현재 저장된 계정, 옵션 정보가 초기화됩니다.
-              </span>
+              <span slot>현재 저장된 계정, 옵션 정보가 초기화됩니다.</span>
               <i slot="reference" class="el-icon-question"></i>
             </el-popover>
           </span>
@@ -69,7 +63,7 @@
           <el-button size="small" @click="DevSet2">
             Dev2
           </el-button>
-        </el-form-item> -->
+        </el-form-item>-->
       </el-form>
     </el-row>
   </div>
@@ -121,7 +115,8 @@ export default {
         startDate: this.startDate,
         endDate: this.endDate,
         serviceType: this.serviceType,
-        username: this.username
+        username: this.username,
+        checkedReleasesIds: []
       };
       this.save(payload);
       this.saved = true;

@@ -71,9 +71,10 @@ function refreshBadgeText() {
 
 console.log(global.browser);
 
+// storage 변경 시 데이터 갱신
 chrome.storage.onChanged.addListener(() => {
   refreshBadgeText();
 });
 
-// 백그라운드에서 퍼센트 계산
-const timer = setInterval(refreshBadgeText, 5000);
+// 1시간마다 백그라운드에서 갱신
+const timer = setInterval(refreshBadgeText, 2000);

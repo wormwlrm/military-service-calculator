@@ -2,6 +2,7 @@ import Dashboard from '../views/components/Dashboard';
 import Option from '../views/components/Option';
 import About from '../views/components/About';
 import Account from '../views/components/Account';
+import Releases from '../views/components/Releases';
 
 export default [
   {
@@ -24,6 +25,13 @@ export default [
   },
   {
     icon: 'el-icon-bell',
+    name: '공지사항',
+    path: '/releases',
+    needBadge: true,
+    component: Releases
+  },
+  {
+    icon: 'el-icon-message',
     name: '정보',
     path: '/about',
     component: About

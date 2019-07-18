@@ -9,11 +9,11 @@
         <span>{{ getServiceName }}</span>
       </div>
       <!-- {{ startDate }} & {{ endDate }}
-      {{ doneTime }} / {{ allTime }} -->
+      {{ doneTime }} / {{ allTime }}-->
       <div class="remain-percentage">
-        <span class="remain-percentage-highlighter">
-          {{ remainPercentage }}
-        </span>
+        <span class="remain-percentage-highlighter">{{
+          remainPercentage
+        }}</span>
         <span class="remain-percentage-unit">%</span>
       </div>
       <div class="percentage-progress">
@@ -44,9 +44,7 @@
         <h2>전역일을 등록해주세요!</h2>
         <p>계정 메뉴에서 본인의 정보를 입력해주세요.</p>
         <router-link to="/account">
-          <el-button>
-            바로가기
-          </el-button>
+          <el-button>바로가기</el-button>
         </router-link>
       </div>
     </template>
@@ -62,8 +60,7 @@ export default {
   data() {
     return {
       date: this.$dayjs(),
-      timer: null,
-      loading: false
+      timer: null
     };
   },
 
@@ -124,7 +121,7 @@ export default {
       );
     },
 
-    ready() {
+    isReady() {
       return !!(this.getStartDate && this.getEndDate);
     },
 
@@ -158,7 +155,7 @@ export default {
 
   methods: {
     initComponent() {
-      if (this.ready) {
+      if (this.isReady) {
         this.timer = setInterval(this.runTimer, 50);
       }
     },
