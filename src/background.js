@@ -69,12 +69,16 @@ function refreshBadgeText() {
   });
 }
 
-console.log(global.browser);
-
 // storage 변경 시 데이터 갱신
 chrome.storage.onChanged.addListener(() => {
   refreshBadgeText();
 });
 
-// 1시간마다 백그라운드에서 갱신
-const timer = setInterval(refreshBadgeText, 2000);
+console.log(process.env.NODE_ENV);
+// 백그라운드에서 갱신 주기
+let timer = null;
+if (process.env.NODE_ENV === 'production') {
+  timer = setInterval(refreshBadgeText, 60 * 60 * 1000);
+} else {
+  timer = setInterval(refreshBadgeText, 5 * 1000);
+}

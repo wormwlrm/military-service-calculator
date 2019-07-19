@@ -10,9 +10,9 @@
         >
           <el-card :body-style="{ padding: '10px' }">
             <span slot="header">
-              <el-button type="text" :href="release.html_url" target="_blank">{{
-                release.name
-              }}</el-button>
+              <el-button type="text" :href="release.html_url" target="_blank">
+                {{ release.name }}
+              </el-button>
             </span>
             <span v-html="release.html" class="release-html"></span>
           </el-card>
@@ -39,8 +39,9 @@ export default {
       const payload = {
         checkedReleasesIds: this.releases.map(release => release.id)
       };
-      this.save(payload);
-      this.$root.$emit('watched');
+      if (this.releases.length) {
+        this.save(payload, 'updated');
+      }
     }
   },
 

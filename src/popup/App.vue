@@ -2,7 +2,7 @@
   <div id="app" :class="themeType === 'dark' ? 'dark' : ''">
     <!-- <el-header height="40px">
         <Header></Header>
-      </el-header> -->
+    </el-header>-->
     <el-container v-loading="loading">
       <el-aside>
         <Sider></Sider>
@@ -18,7 +18,6 @@
 // import Header from '../views/layout/Header';
 import Sider from '../views/layout/Sider';
 import Content from '../views/layout/Content';
-import mixin from '../mixin/mixin';
 
 export default {
   components: {
@@ -58,7 +57,8 @@ export default {
         } else {
           throw new Error('Fail to load data');
         }
-        this.$root.$emit('loaded');
+        this.$root.$emit('loaded:component');
+        this.$root.$emit('loaded:sider');
         this.loading = false;
       } catch (e) {
         console.error(e);

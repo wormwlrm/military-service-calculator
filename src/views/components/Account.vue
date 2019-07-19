@@ -26,15 +26,12 @@
                 :label="item.label"
                 :value="item.value"
               >
-                <span style="float: left">
-                  {{ item.label }}
-                </span>
+                <span style="float: left">{{ item.label }}</span>
                 <span
                   v-if="item.length"
                   style="float: right; color: #8492a6; font-size: 13px; margin-left: 10px;"
+                  >{{ item.length }}개월</span
                 >
-                  {{ item.length }}개월
-                </span>
               </el-option>
             </el-option-group>
           </el-select>
@@ -71,7 +68,7 @@
       <el-button
         :type="saved ? 'success' : 'primary'"
         size="small"
-        @click="saveData"
+        @click="updateData"
       >
         <span v-if="saved">
           <i class="el-icon-check"></i>
@@ -153,14 +150,14 @@ export default {
       this.endDate = null;
     },
 
-    saveData() {
+    updateData() {
       const payload = {
         startDate: this.startDate,
         endDate: this.endDate,
         username: this.username,
         serviceType: this.serviceType
       };
-      this.save(payload);
+      this.save(payload, 'updated');
 
       this.saved = true;
       setTimeout(() => {

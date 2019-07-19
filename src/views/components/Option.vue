@@ -100,15 +100,15 @@ export default {
 
     onThemeTypeChanged(value) {
       this.themeType = value;
-      this.saveData();
+      this.updateData();
     },
 
     onBadgeTypeChanged(value) {
       this.badgeType = value;
-      this.saveData();
+      this.updateData();
     },
 
-    saveData() {
+    updateData() {
       const payload = {
         themeType: this.themeType,
         badgeType: this.badgeType,
@@ -118,7 +118,7 @@ export default {
         username: this.username,
         checkedReleasesIds: []
       };
-      this.save(payload);
+      this.save(payload, 'updated');
       this.saved = true;
       setTimeout(() => {
         this.saved = false;
@@ -138,7 +138,7 @@ export default {
         this.reset = false;
       }, 3000);
 
-      this.saveData();
+      this.updateData();
     },
 
     DevSet() {
@@ -146,7 +146,7 @@ export default {
       this.endDate = this.$dayjs(this.startDate)
         .add(1, 'minute')
         .valueOf();
-      this.saveData();
+      this.updateData();
     },
 
     DevSet2() {
@@ -154,7 +154,7 @@ export default {
       this.endDate = this.$dayjs(this.startDate)
         .add(5, 'minute')
         .valueOf();
-      this.saveData();
+      this.updateData();
     }
   },
 

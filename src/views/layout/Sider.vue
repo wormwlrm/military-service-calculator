@@ -16,18 +16,6 @@
         <i v-else :class="route.icon"></i>
         <span>{{ route.name }}</span>
       </el-menu-item>
-      <!-- <el-menu-item index="/">
-        <i class="el-icon-odometer"></i>
-        <span>전역일</span>
-      </el-menu-item>
-      <el-menu-item index="/option">
-        <i class="el-icon-setting"></i>
-        <span>설정</span>
-      </el-menu-item>
-      <el-menu-item index="/about">
-        <i class="el-icon-bell"></i>
-        <span>정보</span>
-      </el-menu-item>-->
     </el-menu>
   </div>
 </template>
@@ -43,7 +31,7 @@ export default {
   data() {
     return {
       routes,
-      checkedReleasesIds: this.$store.getters.getCheckedReleasesIds,
+      checkedReleasesIds: [],
       fetchedReleases: []
     };
   },
@@ -75,7 +63,9 @@ export default {
             {
               fetchedReleases: this.fetchedReleases
             },
-            () => {}
+            () => {
+              this.$root.$emit('updated');
+            }
           );
         } else {
           throw new Error('No resp');
@@ -94,21 +84,21 @@ export default {
     },
 
     hasNewRelease() {
-      alert(`this.checkedReleasesIds.length ${this.checkedReleasesIds.length}`);
       return this.checkedReleasesIds.length < this.fetchedReleases.length;
     }
   },
 
   created() {
     this.fetchReleaseNotes();
+
     this.initComponent();
-    this.$root.$on('watched', () => {
+    this.$root.$on('loaded:sider', () => {
       this.initComponent();
     });
   },
 
   beforeDestroy() {
-    this.$root.$off('watched');
+    this.$root.$off('loaded:sider');
   }
 };
 </script>
