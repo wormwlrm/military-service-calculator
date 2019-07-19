@@ -32,16 +32,20 @@ npm run build
 - [Vue.js](https://github.com/vuejs/vue)
 - [vue-web-extension](https://github.com/Kocal/vue-web-extension)
 - [day.js](https://github.com/iamkun/dayjs)
+- [axios](https://github.com/axios/axios)
+- [showdown](https://github.com/showdownjs/showdown)
 
 ## 🎰 버전
 
-버전에 대한 정보는 [릴리즈 노트](https://wormwlrm.github.io/2019/06/15/Military-Service-Calculator-release-note.html)에서 확인할 수 있습니다.
+버전에 대한 정보는 [릴리즈 노트](https://github.com/wormwlrm/military-service-calculator/releases)에서 확인할 수 있습니다.
 
 ## 👨‍ 관리자
 
 - [wormwlrm](https://github.com/wormwlrm)
 
 ## 👩‍ 기여자
+
+어떤 양식의 풀 리퀘스트도 환영합니다.
 
 - [bunseokbot](https://github.com/bunseokbot)
 
