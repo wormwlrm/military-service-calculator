@@ -115,8 +115,7 @@ export default {
         startDate: this.startDate,
         endDate: this.endDate,
         serviceType: this.serviceType,
-        username: this.username,
-        checkedReleasesIds: []
+        username: this.username
       };
       this.save(payload, 'updated');
       this.saved = true;
