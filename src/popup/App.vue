@@ -70,6 +70,10 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import '../style/normalize.scss';
+</style>
+
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 @import '../style/global.scss';

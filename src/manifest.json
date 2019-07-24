@@ -13,8 +13,14 @@
     "default_title": "전역일 계산기",
     "default_popup": "popup/popup.html"
   },
+  "applications": {
+    "gecko": {
+      "id": "wormwlrm@naver.com",
+      "strict_min_version": "68.0"
+    }
+  },
   "permissions": ["storage"],
-  "content_security_policy": "script-src 'self' https://www.google-analytics.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com https://www.googletagmanager.com 'unsafe-eval'; object-src 'self'",
   "background": {
     "scripts": ["background.js"]
   }

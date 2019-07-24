@@ -171,7 +171,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/global.scss';
-
 #dashboard {
   position: relative;
 
@@ -187,6 +186,7 @@ export default {
     position: absolute;
     right: 0;
     color: #909399;
+    font-size: 1rem;
   }
 
   .remain-percentage {
