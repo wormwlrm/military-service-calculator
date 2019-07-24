@@ -8,7 +8,7 @@
     <div class="developer">
       <h3 class="developer-title">지원 및 개발자 정보</h3>
       <div class="tab-info">
-        <div class="tab-item">
+        <!-- <div class="tab-item">
           <a
             href="https://wormwlrm.github.io/2019/06/15/Military-Service-Calculator-release-note.html"
             target="_blank"
@@ -17,7 +17,7 @@
           </a>
           <br />
           <span class="item-title">공지사항</span>
-        </div>
+        </div> -->
         <div class="tab-item">
           <a href="https://wormwlrm.github.io" target="_blank">
             <el-button icon="el-icon-s-flag" circle></el-button>
@@ -85,10 +85,6 @@ export default {
   }
 
   .developer {
-    .developer-title {
-      margin-bottom: 5px;
-    }
-
     .tab-info {
       display: flex;
 
