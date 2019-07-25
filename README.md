@@ -2,7 +2,10 @@
 
 ![screenshot](/assets/5.png)
 
-전역일 계산기 크롬 확장 프로그램
+전역일 계산기 확장 프로그램
+
+- [크롬](https://chrome.google.com/webstore/detail/%EC%A0%84%EC%97%AD%EC%9D%BC-%EA%B3%84%EC%82%B0%EA%B8%B0/obbajbadjgfkacnncdiigaffeajfejih)
+- [파이어폭스](https://addons.mozilla.org/ko/firefox/addon/%EC%A0%84%EC%97%AD%EC%9D%BC-%EA%B3%84%EC%82%B0%EA%B8%B0/)
 
 ## ⚒ 설치
 
@@ -48,6 +51,7 @@ npm run build
 어떤 양식의 풀 리퀘스트도 환영합니다.
 
 - [bunseokbot](https://github.com/bunseokbot)
+- [firefanda](https://github.com/firefanda)
 
 ## 라이센스
 

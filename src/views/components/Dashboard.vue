@@ -52,9 +52,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { getServiceLabelByValue } from '../../utils';
 import mixin from '../../mixin/mixin';
-import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -106,8 +106,8 @@ export default {
     remainPercentage() {
       const percentage = ((this.doneTime / this.allTime) * 100).toFixed(7);
       if (percentage > 100) return 100;
-      else if (percentage <= 0) return 0;
-      else return percentage;
+      if (percentage <= 0) return 0;
+      return percentage;
     },
 
     doneTime() {
@@ -139,7 +139,7 @@ export default {
     remainServiceDay() {
       const remainDate = this.wholeServiceDay - this.currentServiceDay;
       if (remainDate < 0) return 0;
-      else return remainDate;
+      return remainDate;
     },
 
     getServiceName() {
