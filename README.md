@@ -9,6 +9,8 @@
 
 ## ⚒ 설치
 
+### 크롬
+
 1. 이 저장소를 `clone`하여 Dev 서버를 실행시킵니다.
 
    ```bash
@@ -23,6 +25,23 @@
 3. 우측 상단의 개발자 모드를 켭니다.
 
 4. `압축 해제된 확장 프로그램 로드` 버튼으로 `/dist` 디렉토리를 로드합니다.
+
+### 파이어폭스
+
+1. 이 저장소를 `clone`하여 Dev 서버를 실행시킵니다.
+
+   ```bash
+   git clone https://github.com/wormwlrm/military-service-calculator.git
+   cd military-service-calculator
+   npm install
+   npm run dev
+   ```
+
+1. 파이어폭스에서 `about:debugging#addons`으로 이동합니다.
+
+1. `부가기능 디버깅 활성화`를 체크합니다.
+
+1. 우측 상단의 `임시 부가기능 로드...` 버튼으로 `/dist` 디렉토리의 `manifest.json` 파일을 로드합니다.
 
 ## 🖨 배포
 

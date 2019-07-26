@@ -1,0 +1,14 @@
+.navbar.navbar-default {
+  margin-bottom: 0px;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.element {
+  .center-block();
+}
+.footer {
+  text-align: center;
+}
