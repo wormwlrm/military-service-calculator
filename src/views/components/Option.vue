@@ -92,7 +92,7 @@ export default {
     initComponent() {
       this.username = this.$store.getters.getUsername;
       this.startDate = this.$store.getters.getStartDate;
-      this.endDate = this.$store.getters.getEndTime;
+      this.endDate = this.$store.getters.getEndDate;
       this.serviceType = this.$store.getters.getServiceType;
       this.themeType = this.$store.getters.getThemeType;
       this.badgeType = this.$store.getters.getBadgeType;
