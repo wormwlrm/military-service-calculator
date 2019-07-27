@@ -2,26 +2,6 @@ import dayjs from 'dayjs';
 
 global.browser = require('webextension-polyfill');
 
-/* eslint-disable */
-(function() {
-  const ga = document.createElement('script');
-  ga.type = 'text/javascript';
-  ga.async = true;
-  ga.src = 'https://www.googletagmanager.com/gtag/js?id=UA-121984235-2';
-  const s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(ga, s);
-})();
-
-setTimeout(() => {
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', 'UA-121984235-2');
-}, 1000);
-/* eslint-enable */
-
 function refreshBadgeText() {
   chrome.storage.sync.get(null, result => {
     console.log(result);
