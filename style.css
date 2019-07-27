@@ -1,14 +1,24 @@
 .navbar.navbar-default {
   margin-bottom: 0px;
 }
+
+
 .center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-.element {
-  .center-block();
+.jumbotron {
+  background-image: url('./assets/welcome-bg.png');
+  min-height: 100vh;
+}
+.jumbotron > img {
+  margin: 100px auto;
 }
 .footer {
   text-align: center;
+}
+.brand-image{
+  width: 103px;
+  height: 31px;
 }
