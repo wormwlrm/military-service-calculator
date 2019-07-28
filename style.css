@@ -1,14 +1,39 @@
-.navbar.navbar-default {
-  margin-bottom: 0px;
+.navbar {
+  position: absolute !important;
+  width: 100%;
+  margin-bottom: 0px !important;
+  background: transparent;
+  box-shadow: none;
 }
 .center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-.element {
-  .center-block();
+.jumbotron {
+  background-image: url('./assets/welcome-bg.png');
+  min-height: 100vh;
+  margin-bottom: 0 !important;
+}
+.jumbotron > img {
+  margin: 100px auto;
 }
 .footer {
   text-align: center;
+}
+.footer .download-buttons {
+  text-align: center;
+}
+.footer .download-buttons img {
+  max-width: 200px;
+}
+.brand-image {
+  width: 103px;
+  height: 31px;
+}
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #191426;
+  color: #868598;
 }
