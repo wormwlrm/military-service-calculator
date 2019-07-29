@@ -1,7 +1,9 @@
 .navbar.navbar-default {
   margin-bottom: 0px;
 }
-
+.trans-bar{
+  background-color: transparent;
+}
 
 .center-block {
   display: block;
