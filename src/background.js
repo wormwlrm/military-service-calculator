@@ -62,3 +62,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   timer = setInterval(refreshBadgeText, 5 * 1000);
 }
+
+// 앱 로드 이후 최초 1회 시행
+refreshBadgeText();
