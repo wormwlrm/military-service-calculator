@@ -22,6 +22,22 @@
 .jumbotron > img {
   margin: 100px auto;
 }
+.carousel{
+  background-image: url('./assets/welcome-bg.png');
+  min-height: 100vh;
+  margin-bottom: 0 !important;
+}
+.carousel-inner >.item>img{
+  margin: 0 auto;
+}
+.item {
+  margin: 100px auto;
+  width: 100vw;
+  height: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
 .footer {
   text-align: center;
 }
