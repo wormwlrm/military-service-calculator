@@ -1,36 +1,65 @@
+main {
+  padding-top: 100px;
+  background-image: url('./assets/welcome-bg.png');
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
 .navbar {
   position: absolute !important;
   width: 100%;
   margin-bottom: 0px !important;
   background: transparent;
   box-shadow: none;
+  z-index: 1;
 }
+
 .center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-.jumbotron {
-  background-image: url('./assets/welcome-bg.png');
-  min-height: 100vh;
-  margin-bottom: 0 !important;
-}
+
 .jumbotron > img {
   margin: 100px auto;
 }
-.footer {
+
+.carousel {
+  margin: 50px auto;
+}
+
+.carousel-control {
+  background-image: none !important;
+}
+
+.carousel-inner > .item > img {
+  margin: 0 auto;
+}
+
+.item {
+  margin: 50px auto;
+  width: 100%;
+  height: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+.download-buttons {
   text-align: center;
 }
-.footer .download-buttons {
-  text-align: center;
-}
-.footer .download-buttons img {
+
+.download-buttons img {
   max-width: 200px;
 }
+
 .brand-image {
   width: 103px;
   height: 31px;
 }
+
 footer {
   padding: 20px;
   text-align: center;
