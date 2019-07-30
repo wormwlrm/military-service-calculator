@@ -1,21 +1,30 @@
-
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+html {
+  font-size: 16px !important;
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 8px !important;
+  }
+}
+
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  background-image: url('./assets/welcome-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 16px;
+}
+
 main {
   padding-top: 100px;
-  background-image: url('./assets/welcome-bg.png');
-  min-height:100vh;
-
+  min-height: 100vh;
 }
 
-.title {
-  color: white;
-  text-align: center;
-}
-.caption-text{
-  text-align: center;
-  margin-bottom: 0;
-  margin:10px auto;
-  
+a:hover {
+  text-decoration: none;
 }
 
 .navbar {
@@ -33,12 +42,36 @@ main {
   margin-right: auto;
 }
 
+.title {
+  color: white;
+  text-align: center;
+  font-size: 4rem;
+  opacity: 0;
+  animation: fade-in 0.7s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.subtitle {
+  color: white;
+  text-align: center;
+  font-size: 2.5rem;
+  opacity: 0;
+  animation: fade-in 0.7s;
+  animation-delay: 0.6s;
+  animation-fill-mode: forwards;
+}
+
 .jumbotron > img {
   margin: 100px auto;
 }
 
 .carousel {
   margin: 50px auto;
+  opacity: 0;
+  animation: fade-in 0.7s;
+  animation-delay: 0.9s;
+  animation-fill-mode: forwards;
 }
 
 .carousel-control {
@@ -47,12 +80,11 @@ main {
 
 .carousel-inner > .item > img {
   margin: 0 auto;
- 
 }
-.carousel-inner{
+.carousel-inner {
   /*max-width: 100%;*/
 }
-.carousel-indicators{
+.carousel-indicators {
   margin-bottom: 0;
 }
 
@@ -61,17 +93,24 @@ main {
   width: 100%;
   height: auto;
   margin-right: 0;
-  text-align: right;
+  text-align: center;
+  color: white;
+  font-size: 16px;
 }
 
 .download-buttons {
   text-align: center;
   position: relative;
   bottom: 25px;
+  opacity: 0;
+  animation: fade-in 0.7s;
+  animation-delay: 1.2s;
+  animation-fill-mode: forwards;
 }
 
 .download-buttons img {
-  max-width: 30%;
+  width: 100%;
+  max-width: 200px;
 }
 
 .brand-image {
@@ -84,13 +123,15 @@ footer {
   text-align: center;
   background-color: #191426;
   color: #868598;
-  position: absolute;
-  bottom: 0;
   display: block;
-  width: 100%
-}
-.title{
-  font-family: "Nanum Gothic", sans-serif;
-  font-weight: bold;
+  width: 100%;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
