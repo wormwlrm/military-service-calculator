@@ -1,6 +1,10 @@
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 main {
   padding-top: 100px;
   background-image: url('./assets/welcome-bg.png');
+  min-height:100vh;
+
 }
 
 .title {
@@ -37,6 +41,13 @@ main {
 
 .carousel-inner > .item > img {
   margin: 0 auto;
+ 
+}
+.carousel-inner{
+  /*max-width: 100%;*/
+}
+.carousel-indicators{
+  margin-bottom: 0;
 }
 
 .item {
@@ -49,10 +60,12 @@ main {
 
 .download-buttons {
   text-align: center;
+  position: relative;
+  bottom: 25px;
 }
 
 .download-buttons img {
-  max-width: 200px;
+  max-width: 30%;
 }
 
 .brand-image {
@@ -65,4 +78,13 @@ footer {
   text-align: center;
   background-color: #191426;
   color: #868598;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%
 }
+.title{
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: bold;
+}
+
