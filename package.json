@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "dayjs": "^1.8.14",
-    "element-ui": "^2.8.2",
+    "element-ui": "^2.12.0",
     "showdown": "^1.9.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.1",
