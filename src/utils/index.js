@@ -12,38 +12,6 @@ export const getEndDate = (startDate, serviceType = 'custom') => {
   let updatedEndDate;
 
   /**
-   * @description 복무단축 기준일자 2018-10-01
-   */
-  const shortenStartDate = dayjs('2018-10-01');
-
-  /**
-   * @param {Number} originalMonth 단축 전 복무 개월 수
-   * @param {Number} shortenMonth 단축된 복무 개월 수
-   */
-  const calculateShortenDate = (originalMonth = 21, shortenMonth = 3) => {
-    originalEndDate = dayjs(startDate)
-      .add(originalMonth, 'month')
-      .subtract(1, 'day');
-
-    // 단축 조건 만족
-    if (originalEndDate > shortenStartDate) {
-      const diffDate = originalEndDate.diff(shortenStartDate, 'day');
-      const shortenDate = Math.ceil(diffDate / 14);
-      // console.log(shortenDate);
-
-      if (shortenDate > 90) {
-        updatedEndDate = dayjs(startDate)
-          .add(originalMonth - shortenMonth, 'month')
-          .subtract(1, 'day');
-      } else {
-        updatedEndDate = originalEndDate.subtract(shortenDate, 'day');
-      }
-    } else {
-      updatedEndDate = originalEndDate;
-    }
-  };
-
-  /**
    * @param {Number} originalMonth 단축 전 복무 개월 수
    */
   const calculateNormalEndDate = (originalMonth = 21) => {
@@ -59,29 +27,26 @@ export const getEndDate = (startDate, serviceType = 'custom') => {
     case 'marine':
     case 'police':
     case 'katusa':
-      calculateShortenDate(21, 3);
+      calculateNormalEndDate(21, 3);
       break;
 
     // 20
     case 'navy':
     case 'coast':
     case 'fire':
-      calculateShortenDate(23, 3);
+      calculateNormalEndDate(23, 3);
       break;
 
     // 21
     case 'social':
-      calculateShortenDate(24, 3);
-      break;
-
-    // 22
     case 'airForce':
-      calculateShortenDate(24, 2);
+      calculateNormalEndDate(21);
+
       break;
 
     // 23
     case 'industrialReserve':
-      calculateShortenDate(26, 3);
+      calculateNormalEndDate(23);
       break;
 
     // 34
@@ -100,7 +65,7 @@ export const getEndDate = (startDate, serviceType = 'custom') => {
     default:
       break;
   }
-  console.log('updatedEndDate: ', updatedEndDate);
+
   return updatedEndDate.format('YYYY-MM-DD');
 };
 
